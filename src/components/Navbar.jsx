@@ -1,4 +1,4 @@
-import { Mail, Notifications, Pets } from "@mui/icons-material";
+import React, { useState } from "react";
 import {
   AppBar,
   Avatar,
@@ -10,8 +10,8 @@ import {
   styled,
   Toolbar,
   Typography,
-} from "@mui/material";
-import React, { useState } from "react";
+} from "@mui/material"; // 导入所需的 Material-UI 组件
+import { Mail, Notifications, Pets } from "@mui/icons-material"; // 导入所需的 Material-UI 图标组件
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -42,31 +42,42 @@ const UserBox = styled(Box)(({ theme }) => ({
     display: "none",
   },
 }));
+
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false); // 控制菜单显示/隐藏的状态
+
   return (
     <AppBar position="sticky">
+      {/* 工具栏 */}
       <StyledToolbar>
+        {/* 左侧标题 */}
         <Typography variant="h6" sx={{ display: { xs: "none", sm: "block" } }}>
           LAMA DEV
         </Typography>
+        {/* 在手机端显示宠物图标 */}
         <Pets sx={{ display: { xs: "block", sm: "none" } }} />
+        {/* 搜索框 */}
         <Search>
-          <InputBase placeholder="search..." />
+          <InputBase placeholder="搜索..." />
         </Search>
+        {/* 右侧图标 */}
         <Icons>
+          {/* 邮件图标 */}
           <Badge badgeContent={4} color="error">
             <Mail />
           </Badge>
+          {/* 通知图标 */}
           <Badge badgeContent={2} color="error">
             <Notifications />
           </Badge>
+          {/* 用户头像 */}
           <Avatar
             sx={{ width: 30, height: 30 }}
             src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            onClick={(e) => setOpen(true)}
+            onClick={(e) => setOpen(true)} // 点击打开菜单
           />
         </Icons>
+        {/* 用户信息框，在手机端隐藏 */}
         <UserBox onClick={(e) => setOpen(true)}>
           <Avatar
             sx={{ width: 30, height: 30 }}
@@ -75,6 +86,7 @@ const Navbar = () => {
           <Typography variant="span">John</Typography>
         </UserBox>
       </StyledToolbar>
+      {/* 用户菜单 */}
       <Menu
         id="demo-positioned-menu"
         aria-labelledby="demo-positioned-button"

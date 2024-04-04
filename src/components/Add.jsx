@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
     Avatar,
     Button,
@@ -9,8 +10,8 @@ import {
     TextField,
     Tooltip,
     Typography,
-} from "@mui/material";
-import React, { useState } from "react";
+} from "@mui/material"; // 导入所需的 Material-UI 组件
+
 import {
     Add as AddIcon,
     DateRange,
@@ -18,15 +19,17 @@ import {
     Image,
     PersonAdd,
     VideoCameraBack,
-} from "@mui/icons-material";
+} from "@mui/icons-material"; // 导入所需的 Material-UI 图标组件
 import { Box } from "@mui/system";
 
+// 自定义样式的 Modal
 const StyledModal = styled(Modal)({
     display: "flex",
     alignItems: "center",
     justifyContent: "center"
 })
 
+// 自定义样式的 Box，用于包裹用户信息
 const UserBox = styled(Box)({
     display: "flex",
     alignItems: "center",
@@ -36,10 +39,11 @@ const UserBox = styled(Box)({
 
 const Add = () => {
 
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false) // 控制 Modal 显示/隐藏的状态
 
     return (
         <>
+            {/* 悬浮按钮，点击打开 Modal */}
             <Tooltip onClick={e => setOpen(true)}
                 title="Delete"
                 sx={{
@@ -52,14 +56,17 @@ const Add = () => {
                     <AddIcon />
                 </Fab>
             </Tooltip>
+            {/* 自定义样式的 Modal */}
             <StyledModal
                 open={open}
                 onClose={e => setOpen(false)}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
+                {/* Modal 内容 */}
                 <Box width={400} height={280} bgcolor="white" p={3} borderRadius={5}>
                     <Typography variant="h6" color="gray" texAlign="center">Create post</Typography>
+                    {/* 用户信息 */}
                     <UserBox>
                         <Avatar
                             src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
@@ -67,6 +74,7 @@ const Add = () => {
                         />
                         <Typography fontWeight={500} variant="span">John Doe</Typography>
                     </UserBox>
+                    {/* 文本输入框 */}
                     <TextField
                         sx={{ width: "100%" }}
                         id="standard-multiline-static"
@@ -75,12 +83,14 @@ const Add = () => {
                         placeholder="What's on your mind?"
                         variant="standard"
                     />
+                    {/* 表情、图片、视频、添加朋友按钮 */}
                     <Stack direction="row" gap={1} mt={2} mb={3}>
                         <EmojiEmotions color="primary" />
                         <Image color="secondary" />
                         <VideoCameraBack color="success" />
                         <PersonAdd color="error" />
                     </Stack>
+                    {/* 发布和设置时间按钮组 */}
                     <ButtonGroup
                         fullWidth
                         variant="contained"
@@ -97,4 +107,4 @@ const Add = () => {
     );
 };
 
-export default Add; 
+export default Add;
