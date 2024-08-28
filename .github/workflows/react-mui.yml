@@ -16,8 +16,9 @@ env:
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
-  pages: write
-  id-token: write
+  pages: write  # to deploy to Pages
+  id-token: write # to verify the deployment originates from an appropriate source
+  actions: read # to download an artifact uploaded by `actions/upload-pages-artifact@v4`
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
