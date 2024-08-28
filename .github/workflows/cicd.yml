@@ -24,7 +24,7 @@ jobs:
         with:
             node-version: 20
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       # - name: Test Project
       #   run: npm run test
