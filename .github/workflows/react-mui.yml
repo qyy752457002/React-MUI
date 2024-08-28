@@ -68,10 +68,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: production-files
-          path: ./build
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          path: ./build
