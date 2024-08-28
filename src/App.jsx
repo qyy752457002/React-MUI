@@ -44,7 +44,7 @@ function App() {
   }
 
   // 如果用户未登录，重定向到登录页面
-  {/* 这儿嵌入了 Auth0 的 login 函数 */}
+  /* 这儿嵌入了 Auth0 的 login 函数 */
   if (!isAuthenticated) {
     loginWithRedirect();
     return <div>Redirecting...</div>;
