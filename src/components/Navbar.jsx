@@ -12,6 +12,8 @@ import {
   Typography,
 } from "@mui/material"; // 导入所需的 Material-UI 组件
 import { Mail, Notifications, Pets } from "@mui/icons-material"; // 导入所需的 Material-UI 图标组件
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useAuth0 } from "@auth0/auth0-react";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -45,6 +47,10 @@ const UserBox = styled(Box)(({ theme }) => ({
 
 const Navbar = () => {
   const [open, setOpen] = useState(false); // 控制菜单显示/隐藏的状态
+
+  const navigate = useNavigate(); // 使用 useNavigate 钩子
+
+  const { logout, isAuthenticated } = useAuth0();
 
   return (
     <AppBar position="sticky">
@@ -101,9 +107,20 @@ const Navbar = () => {
           horizontal: "right",
         }}
       >
-        <MenuItem>Profile</MenuItem>
-        <MenuItem>My account</MenuItem>
-        <MenuItem>Logout</MenuItem>
+        <MenuItem onClick={() => navigate("/profile")}>Profile</MenuItem>
+        {/* <MenuItem>My account</MenuItem> */}
+
+        {/* 如果用户已登录，显示注销按钮 */}
+        {/* 这儿嵌入了 Auth0 的 logout 函数 */}
+        {isAuthenticated && (
+          <MenuItem
+            onClick={() =>
+              logout({ logoutParams: { returnTo: window.location.origin } })
+            }
+          >
+            Logout
+          </MenuItem>
+        )}
       </Menu>
     </AppBar>
   );
