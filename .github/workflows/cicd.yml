@@ -24,7 +24,11 @@ jobs:
         with:
             node-version: 20
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
+
+      # - name: Test Project
+      #   run: npm run test
+
       - name: Build Project
         run: npm run build      
       - name: Upload artifacts
